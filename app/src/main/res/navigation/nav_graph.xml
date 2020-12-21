@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/recipesFragment">
+
+    <fragment
+        android:id="@+id/recipesFragment"
+        android:name="edu.ktu.skanaus.ui.recipes.RecipesFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_recipes">
+        <action
+            android:id="@+id/action_recipesFragment_to_recipeFragment"
+            app:destination="@id/recipeFragment" />
+        <action
+            android:id="@+id/action_recipesFragment_to_editRecipeFragment"
+            app:destination="@id/editRecipeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipeFragment"
+        android:name="edu.ktu.skanaus.ui.recipe.RecipeFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_recipe" >
+        <argument
+            android:name="recipeId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_recipeFragment_to_editRecipeFragment"
+            app:destination="@id/editRecipeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editRecipeFragment"
+        android:name="edu.ktu.skanaus.ui.edit.EditRecipeFragment"
+        android:label="@string/app_name">
+        <argument
+            android:name="recipeId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_editRecipeFragment_to_recipeFragment"
+            app:destination="@id/recipeFragment"
+            app:popUpTo="@+id/recipesFragment" />
+    </fragment>
+</navigation>

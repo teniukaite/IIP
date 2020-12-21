@@ -1,0 +1,25 @@
+package edu.ktu.skanaus.database.ingredient
+
+import androidx.lifecycle.LiveData
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Update
+
+@Dao
+interface IngredientDao {
+    @Insert
+    fun insert(ingredient: Ingredient)
+
+    @Update
+    fun update(ingredient: Ingredient)
+
+    @Query("SELECT * FROM ingredients WHERE recipeId = :recipeId ORDER BY orderOfIngredient ASC")
+    fun getRecipeIngredients(recipeId: Long): LiveData<List<Ingredient>>
+
+    @Query("DELETE FROM ingredients WHERE recipeId = :recipeId AND description = :description")
+    fun deleteIngredient(recipeId: Long, description: String)
+
+    @Query("DELETE FROM ingredients WHERE recipeId = :recipeId")
+    fun deleteIngredients(recipeId: Long)
+}
